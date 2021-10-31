@@ -15,6 +15,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Gas, function (sprite, otherSpri
 })
 statusbars.onZero(StatusBarKind.Energy, function (status) {
     game.over(false)
+    game.reset()
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     myEnemy.destroy(effects.disintegrate, 500)
@@ -35,6 +36,8 @@ mySprite.setStayInScreen(true)
 statusbar = statusbars.create(20, 4, StatusBarKind.Energy)
 statusbar.attachToSprite(mySprite, -25, 0)
 info.setScore(0)
+game.showLongText("This game is still in early development so expect some glitches.", DialogLayout.Center)
+game.showLongText("Aliens are attacking! Destroy them without running out of gas! Collect the pizza to fill your gas!", DialogLayout.Bottom)
 game.onUpdateInterval(5000, function () {
     myFuel = sprites.createProjectileFromSide(img`
         . . . . . . b b b b . . . . . . 
@@ -64,5 +67,5 @@ game.onUpdateInterval(1000, function () {
 })
 game.onUpdateInterval(300, function () {
     statusbar.value += -2
-    info.changeScoreBy(0.5)
+    info.changeScoreBy(1)
 })
